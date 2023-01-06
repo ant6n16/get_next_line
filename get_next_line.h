@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 20:17:10 by antdelga          #+#    #+#             */
-/*   Updated: 2022/12/21 22:31:20 by antdelga         ###   ########.fr       */
+/*   Created: 2022/12/25 15:43:05 by antdelga          #+#    #+#             */
+/*   Updated: 2023/01/05 15:59:40 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_printf(char const *format, ...)
-{
-	va_list	arg;
-	int		cont;
-	char	*cad;
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-	cad = ft_strdup(format);
-	if (cad == NULL)
-		return (-1);
-	va_start(arg, format);
-	cont = ft_check_input(cad, &arg);
-	free(cad);
-	va_end(arg);
-	return (cont);
-}
+char	*get_next_line(int fd);
+size_t	ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
+void	*ft_calloc(size_t count, size_t size);
+
+#endif

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 15:51:39 by antdelga          #+#    #+#             */
-/*   Updated: 2022/12/05 16:03:19 by antdelga         ###   ########.fr       */
+/*   Created: 2022/12/26 21:34:29 by antdelga          #+#    #+#             */
+/*   Updated: 2023/01/05 16:34:00 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+//void check_leaks();
+
+int	main(int argc, char **argv)
 {
-	char	*result;
-	int		cont;
+	char	*line;
+	int		fd;
 
-	if (!s || !f)
-		return (NULL);
-	result = (char *) malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (result == NULL)
-		return (NULL);
-	cont = 0;
-	while (s[cont] != '\0')
-	{
-		result[cont] = f(cont, s[cont]);
-		cont++;
-	}
-	result[cont] = '\0';
-	return (result);
+	(void)argc;
+	fd = open(argv[1], O_RDONLY);
+	line = get_next_line(fd);
+	//printf("%s", line);
+    //printf("%d\n", fd);
+	fd = close(fd);
+	free(line);
+	//check_leaks();
+    return (0);
 }
