@@ -37,7 +37,9 @@ The code in this repository follows [the rules of the Norminette](https://github
 * [`test.txt`](https://github.com/ant6n16/get_next_line/blob/main/test.txt) : File we read from.
 
 ## Requirements
-The library is written in __C language__ and needs the `gcc` compiler, with `<stdlib.h>`, `<stdarg.h>` and `<unistd.h>` standard libraries to run.
+The library is written in __C language__ and needs the `gcc` compiler, with `<stdlib.h>`, `<stdio.h>`, `<unistd.h>`, `<limits.h>` and `<fcntl.h>` standard libraries to run.
+
+# include <limits.h>
 
 ## Instructions
 
