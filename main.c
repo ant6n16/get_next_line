@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:34:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/01/05 16:34:00 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:32:57 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ int	main(int argc, char **argv)
 	(void)argc;
 	fd = open(argv[1], O_RDONLY);
 	line = get_next_line(fd);
-	//printf("%s", line);
-    //printf("%d\n", fd);
-	fd = close(fd);
+	printf("%s", line);
+	// line = get_next_line(fd);
+	// printf("%s", line);
+	// close(fd);
+	// fd = open(argv[1], O_RDONLY);
+	// line = get_next_line(fd);
+	// printf("%s", line);
 	free(line);
 	//check_leaks();
     return (0);
