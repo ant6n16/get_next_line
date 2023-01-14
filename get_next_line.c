@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 15:42:39 by antdelga          #+#    #+#             */
-/*   Updated: 2023/01/06 15:47:54 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/01/14 22:08:55 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,14 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*letters;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (read(fd, 0, 0) == -1)
+	{
+		free(letters);
+		letters = NULL;
+		return (letters);
+	}
 	letters = ft_read(fd, letters);
 	if (!letters)
 		return (NULL);
