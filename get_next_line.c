@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 15:42:39 by antdelga          #+#    #+#             */
-/*   Updated: 2023/01/14 22:08:55 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:41:56 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_read(int fd, char *letters)
 	cont = 1;
 	buf = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (free(letters), letters = NULL, letters);
 	while (ft_strchr(letters, '\n') == 0)
 	{
 		cont = read(fd, buf, BUFFER_SIZE);
@@ -72,13 +72,10 @@ char	*free_buffer(char *letters)
 	while (letters[i1] != '\0' && letters[i1] != '\n')
 		i1++;
 	if (letters[i1] == '\0')
-	{
-		free(letters);
-		return (NULL);
-	}
+		return (free(letters), letters = NULL, letters);
 	aux = (char *) ft_calloc(sizeof(char), (ft_strlen(letters) - i1 + 1));
 	if (!aux)
-		return (NULL);
+		return (free(letters), letters = NULL, letters);
 	i1++;
 	i2 = 0;
 	while (letters[i1] != '\0')
@@ -95,15 +92,13 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (read(fd, 0, 0) == -1)
-	{
-		free(letters);
-		letters = NULL;
-		return (letters);
-	}
+		return (free(letters), letters = NULL, letters);
 	letters = ft_read(fd, letters);
 	if (!letters)
-		return (NULL);
+		return (free(letters), letters = NULL, letters);
 	line = ft_cut_line(letters);
+	if (!line)
+		return (free(letters), letters = NULL, letters);
 	letters = free_buffer(letters);
 	return (line);
 }

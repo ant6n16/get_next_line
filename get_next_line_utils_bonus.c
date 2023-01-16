@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 20:59:35 by antdelga          #+#    #+#             */
-/*   Updated: 2023/01/06 21:03:19 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:45:18 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	l = l1 + ft_strlen(s2);
 	final = (char *) ft_calloc(sizeof(char), (l + 1));
 	if (!final)
-		return (NULL);
+		return (free(s1), NULL);
 	i = -1;
 	while (++i < l1)
 		final[i] = s1[i];
@@ -79,6 +79,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		final[i] = s2[i - l1];
 		i++;
 	}
-	free(s1);
-	return (final);
+	return (free(s1), final);
 }
